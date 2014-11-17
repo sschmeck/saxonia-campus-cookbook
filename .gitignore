@@ -1,0 +1,6 @@
+# Vagrant
+/.vagrant
+# librarian-chef
+/tmp
+/cookbooks
+/Cheffile.lock
