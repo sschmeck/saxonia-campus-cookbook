@@ -11,13 +11,6 @@ def define_node(config, name, glassfish_config)
       chef.add_recipe 'glassfish-app'
 
       chef.json = {
-        'java' => {
-          'install_flavor' => 'oracle',
-          'jdk_version' => 7,
-          'oracle' => {
-            'accept_oracle_download_terms' => true
-          }
-        },
         'glassfish' => glassfish_config
       }
     end
@@ -35,8 +28,6 @@ Vagrant.configure('2') do |config|
 
   define_node(config,
               'glassfish-example',
-              'version' => '4.1',
-              'package_url' => 'http://dlc.sun.com.edgesuite.net/glassfish/4.1/release/glassfish-4.1.zip',
               'domains' => {
                 'mydomain' => {
                   'config' => {
