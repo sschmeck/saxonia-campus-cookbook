@@ -15,22 +15,5 @@ Vagrant.configure('2') do |config|
     chef.cookbooks_path = %w(site-cookbooks cookbooks)
       
     chef.add_recipe 'glassfish-app'
-
-    chef.json = {
-      'glassfish' => {
-        'domains' => {
-          'mydomain' => {
-            'config' => {
-              'port' => 7070,
-              'admin_port' => 4848,
-              'username' => 'admin',
-              'password' => 'admin',
-              'master_password' => 'mykeystorepassword',
-              'remote_access' => true
-            }
-          }
-        }
-      }
-    }
   end
 end
