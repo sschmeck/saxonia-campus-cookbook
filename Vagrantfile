@@ -6,9 +6,9 @@ def define_node(config, name, glassfish_config)
 
     config.omnibus.chef_version = :latest
     client.vm.provision :chef_solo do |chef|
-      chef.add_recipe 'apt'
-      chef.add_recipe 'java::default'
-      chef.add_recipe 'glassfish::attribute_driven_domain'
+      chef.cookbooks_path = %w(site-cookbooks cookbooks)
+      
+      chef.add_recipe 'glassfish-app'
 
       chef.json = {
         'java' => {
