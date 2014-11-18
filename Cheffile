@@ -1,4 +1,8 @@
 site "https://supermarket.getchef.com/api/v1"
 
 cookbook 'apt'
+cookbook 'java'
+cookbook 'maven'
+cookbook 'mysql'
+cookbook 'database'
 cookbook 'glassfish', git: 'https://github.com/realityforge/chef-glassfish.git'
