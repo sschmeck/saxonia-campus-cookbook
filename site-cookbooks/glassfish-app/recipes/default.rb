@@ -32,19 +32,30 @@ mysql_connection_info = { :host     => 'localhost',
                           :username => 'root',
                           :password => node['mysql']['server_root_password'] }
 
-mysql_database 'campus' do
+mysql_database node['campus-app']['database']['name'] do
   connection mysql_connection_info
   action :create
 end
 
-schema_file = ::File.join(node['campus-app']['source-location'], node['campus-app']['database-schema-file'])
+schema_file = ::File.join(node['campus-app']['source-location'], node['campus-app']['database']['schema-file'])
 mysql_database 'create campus tables' do
   connection mysql_connection_info
-  database_name 'campus'
-  # TODO use script from git repository
+  database_name node['campus-app']['database']['name']
   sql { ::File.open(schema_file).read }
   action :query
 end
+
+mysql_database_user node['campus-app']['database']['user'] do
+  connection mysql_connection_info
+  database_name node['campus-app']['database']['name']
+  password node['campus-app']['database']['password']
+  privileges [:all]
+  action :grant
+end
+
+ark "mysql-connector-java" do
+   url 'http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.34.zip'
+ end
 
 # -----------------------------------------------
 # 3. Setup the application server

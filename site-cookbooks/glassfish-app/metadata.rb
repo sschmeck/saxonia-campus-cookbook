@@ -5,4 +5,5 @@ depends 'maven'
 depends 'database'
 depends 'mysql'
 
+depends 'ark'
 depends 'glassfish'
