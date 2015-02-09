@@ -17,6 +17,7 @@ Vagrant.configure('2') do |config|
 
   config.omnibus.chef_version = :latest
   config.vm.provision :chef_solo do |chef|
+    #chef.log_level = :debug
     chef.cookbooks_path = %w(site-cookbooks cookbooks)
     chef.add_recipe 'glassfish-app'
   end

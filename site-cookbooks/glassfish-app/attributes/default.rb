@@ -13,6 +13,7 @@ default['campus-app']['database']['schema-file'] = 'business/src/test/db/campus.
 default['glassfish']['domains'] = {
   'mydomain' => {
     'config' => {
+      'max_perm_size' => 256,
       'port' => 7070,
       'admin_port' => 4848,
       'username' => 'admin',
@@ -24,6 +25,7 @@ default['glassfish']['domains'] = {
       'jdbcdriver' => {
         'type' => 'common',
         'url' => 'file:///usr/local/mysql-connector-java/mysql-connector-java-5.1.34-bin.jar'
+        #'requires_restart' => true
       },
     },
     'jdbc_connection_pools' => {
@@ -36,7 +38,7 @@ default['glassfish']['domains'] = {
           'ping' => 'true',
           'description' => 'MySql Connection Pool',
           'properties' => {
-            'Instance' => 'Instance1',
+            'Instance' => 'jdbc:mysql://localhost:3306/campus',
             'ServerName' => 'localhost',
             'User' => 'campus',
             'Password' => 'campus',

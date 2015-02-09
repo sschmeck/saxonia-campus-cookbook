@@ -1,3 +1,5 @@
+name 'glassfish-app'
+
 depends 'apt'
 depends 'java'
 depends 'maven'
